@@ -55,7 +55,7 @@ const App = (props) => {
         backgroundPosition: 'center',
         backgroundImage: `url(${Corona})`,
         backgroundRepeat:'no-repeat',
-        backgroundSize:'cover'
+        backgroundSize:'contain'
       }}
     >
       <Header />
