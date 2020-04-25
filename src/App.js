@@ -15,7 +15,7 @@ const App = (props) => {
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [search,setSearch] = useState('')
-  const [cardPerPage] = useState(16)
+  const [cardPerPage,setCardPerPage] = useState(16)
   useEffect(() => {
     document.title='Covid-19'
     const getCountryData = async () => {
@@ -42,6 +42,10 @@ const App = (props) => {
   const handleSeach =(search)=>{
     console.log("Search",search)
     setSearch(search)
+    setCardPerPage(data.length)
+    search === '' &&(setCardPerPage(16))
+
+    
   }
 
     if(loading)
