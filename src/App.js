@@ -6,11 +6,15 @@ import Corona from './Assests/corona.png'
 import { CircularProgress } from '@material-ui/core'
 import axios from 'axios'
 import CountUp from 'react-countup'
+import VideoPlyaer from './Components/VideoPlyaer'
+import Model from 'react-modal'
+Model.setAppElement('#root')
 const App = (props) => {
   const [data, setData] = useState([])
   const [totalData, setTotal] = useState({})
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
+  const [search,setSearch] = useState('')
   const [cardPerPage] = useState(16)
   useEffect(() => {
     document.title='Covid-19'
@@ -30,10 +34,16 @@ const App = (props) => {
   }, [])
   const indexOfLastCard = currentPage * cardPerPage
   const indexOfFirstCard = indexOfLastCard - cardPerPage
-  const currentCard = data.slice(indexOfFirstCard, indexOfLastCard)
+  const currentCard = data.filter((country)=>{return country.country.toLowerCase().indexOf(search.toLowerCase())!==-1}).slice(indexOfFirstCard, indexOfLastCard)
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
+
+  const handleSeach =(search)=>{
+    console.log("Search",search)
+    setSearch(search)
+  }
+
     if(loading)
     {
       return (
@@ -58,8 +68,9 @@ const App = (props) => {
         backgroundSize:'contain'
       }}
     >
-      <Header />
-      <SpacingGrid data={currentCard} />
+      <VideoPlyaer/>
+      <Header handleSearch={handleSeach} />
+      <SpacingGrid data={currentCard}/>
       <PaginationView
         cardsPerPage={cardPerPage}
         totalCard={data.length}

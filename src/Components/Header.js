@@ -7,6 +7,7 @@ import InputBase from '@material-ui/core/InputBase'
 import { fade, makeStyles } from '@material-ui/core/styles'
  import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
+import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export default function Header() {
+export default function Header({handleSearch}) {
   const classes = useStyles()
 
   return (
@@ -89,6 +90,7 @@ export default function Header() {
               <SearchIcon />
             </div>
             <InputBase
+             onChange={(e)=>{handleSearch(e.target.value)}}
               placeholder='Search…'
               classes={{
                 root: classes.inputRoot,
