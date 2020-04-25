@@ -23,6 +23,7 @@ const VideoPlyaer = () => {
           width={'100%'}
           height={'100%'}
           url={'https://www.youtube.com/watch?v=PSnSo9kYlH4'}
+          onEnded={()=>{setModel(false)}}
         />
       </Model>
     </div>
