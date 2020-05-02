@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     display: 'flex',
-    height: 180,
+    height: 210,
     width: 300,
     // paddingTop: 10,
     flexDirection: 'column',
@@ -43,7 +43,7 @@ export default function SpacingGrid({ data }) {
                   className={classes.paper}
                 >
                   <Paper
-                  elevation={10}
+                    elevation={10}
                     style={{
                       display: 'flex',
                       flexDirection: 'row',
@@ -74,25 +74,36 @@ export default function SpacingGrid({ data }) {
                     style={{
                       height: '70%',
                       width: '100%',
-                      paddingTop:15
+                      paddingTop: 15,
                     }}
                   >
                     <ul>
                       <div className={classes.tile}>
-                        <li style={{ fontWeight: 'bold' }}>Total Cases:</li>{' '}
+                        <li style={{ fontWeight: 'bold' }}>Total Cases</li>{' '}
                         <CounterUp end={item.cases} delay={2} />
                       </div>
                       <div className={classes.tile}>
-                        <li style={{ fontWeight: 'bold' }}>Today's Case:</li>{' '}
+                        <li style={{ fontWeight: 'bold' }}>Today's Case</li>{' '}
                         <CounterUp end={item.todayCases} delay={2} />
                       </div>
                       <div className={classes.tile}>
-                        <li style={{ fontWeight: 'bold' }}>Recoverd:</li>{' '}
+                        <li style={{ fontWeight: 'bold' }}>Recoverd</li>{' '}
                         <CounterUp end={item.recovered} delay={2} />
                       </div>
                       <div className={classes.tile}>
-                        <li style={{ fontWeight: 'bold' }}>Deaths:</li>{' '}
+                        <li style={{ fontWeight: 'bold' }}>Deaths</li>{' '}
                         <CounterUp end={item.deaths} delay={2} />
+                      </div>
+                      <div className={classes.tile}>
+                        <li style={{ fontWeight: 'bold' }}>Updated</li>{' '}
+                        {new Date(item.updated).toLocaleString(
+                          'en-US',
+                          {
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: true,
+                          }
+                        )}
                       </div>
                     </ul>
                   </div>
